@@ -36,15 +36,15 @@ public class UserController {
 
     @GetMapping("/update/{id}")
     public String edit(Model model, @PathVariable("id") int id){
-        model.addAttribute("user",userService.getById(id));
-
+        User user = userService.getById(id);
+        model.addAttribute("user", user);
 
         return "update";
     }
-    @PatchMapping("/update")
+    @PatchMapping("/update/{id}")
 public String updateUser(@ModelAttribute("user") User user, @PathVariable("id") int id){
-        userService.update(id, user);
-        return "delete";
+        userService.saveUsers(user);
+        return "redirect:/";
     }
 
     @DeleteMapping("/delete/{id}")
