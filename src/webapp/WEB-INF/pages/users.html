@@ -14,7 +14,7 @@
         <th>Age</th>
         <th>Email</th>
         <th>Operation</th>
-           </tr>
+    </tr>
 
     <tr th:each="users : ${allUsers}">
         <td th:utext="${users.getId()}">id</td>
@@ -23,15 +23,14 @@
         <td th:utext="${users.getAge()}">age</td>
         <td th:utext="${users.getEmail()}">email</td>
         <td>
-            <form th:method="GET" th:action="@{/update/{id}(id=${users.getId()})}" >
+            <form th:method="GET" th:action="@{/update/{id}(id=${users.getId()})}">
                 <input type="submit" value="Update">
             </form>
-<!--            <input type="button" value="Update"-->
-<!--                   onclick="window.location.href = 'update'" />-->
 
-        <form th:method="DELETE" th:action="@{/delete/{id}(id=${users.getId()})}" >
-            <input type="submit" value="Delete">
-        </form>
+
+            <form th:method="DELETE" th:action="@{/delete/{id}(id=${users.getId()})}">
+                <input type="submit" value="Delete">
+            </form>
 
         </td>
 
@@ -39,9 +38,7 @@
 
     <br>
     <input type="button" value="Add"
-           onclick="window.location.href = 'new'" />
-
-
+           onclick="window.location.href = 'new'"/>
 
 
 </table>

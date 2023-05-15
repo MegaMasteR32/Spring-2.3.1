@@ -11,19 +11,14 @@ import java.util.List;
 
 @Repository
 @AllArgsConstructor
-class UserDaoImpl implements UserDao{
+class UserDaoImpl implements UserDao {
     private final SessionFactory sessionFactory;
 
-    @Override
-    public List<User> allUser() {
-        sessionFactory.getCurrentSession();
-        return null;
-    }
 
     @Override
     @Transactional
-    public void saveUser(User user) { sessionFactory.getCurrentSession().saveOrUpdate(user);
-
+    public void saveUser(User user) {
+        sessionFactory.getCurrentSession().saveOrUpdate(user);
     }
 
     @Override
@@ -33,23 +28,6 @@ class UserDaoImpl implements UserDao{
         query.setParameter("userID", id);
         query.executeUpdate();
 
-    }
-    @Override
-    @Transactional
-    public void update(int id, User updateUser){
-        User userToBeUpdate = getById(id);
-        userToBeUpdate.setName(updateUser.getName());
-        userToBeUpdate.setSurname((updateUser.getSurname()));
-        userToBeUpdate.setAge(updateUser.getAge());
-        userToBeUpdate.setEmail(updateUser.getEmail());
-        saveUser(userToBeUpdate);
-
-    }
-
-    @Override
-    @Transactional
-    public void edit(User user) {
-        sessionFactory.getCurrentSession().update(user);
     }
 
     @Override
@@ -61,7 +39,6 @@ class UserDaoImpl implements UserDao{
     @Override
     @Transactional(readOnly = true)
     public List<User> getAllUsers() {
-//        return List.of(new User( "frfr", "regr", 5,"f@grfg"),new User("frfr2", "regr2", 5,"f@grfg2"));
         TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery("from User");
         return query.getResultList();
     }

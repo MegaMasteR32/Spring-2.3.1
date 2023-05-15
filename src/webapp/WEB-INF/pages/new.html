@@ -1,46 +1,28 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"
-      xmlns:form="https://jakarta.ee/xml/ns/jakartaee">
+
 <head>
     <meta charset="UTF-8">
     <title>New User</title>
 </head>
 <body>
-<!--<br>-->
-<!--<form:from action="saveUser" modelAttribute="user">-->
-<!--    Name <form:input path="name"/>-->
-<!--<br><br>-->
-<!--    Surname <form:input path="surname"/>-->
-<!--    <br><br>-->
-<!--    Age <form:input path="age"/>-->
-<!--    <br><br>-->
-<!--    Email <form:input path="email"/>-->
-<!--    <br><br>-->
-
-<!--    <input type="submit" value="OK">-->
-
-<!--    -->
-<!--</form:from>-->
-
-
 
 <form th:method="POST" th:action="@{/save}" th:object="${user}">
-    <label for="name">Enter name:   </label>
-    <input type="text" th:field="*{name}" id="name" />
+    <label for="name">Enter name: </label>
+    <input type="text" th:field="*{name}" id="name"/>
     <br><br>
 
-    <label for="surname">Enter surname:   </label>
-    <input type="text" th:field="*{surname}" id="surname" />
+    <label for="surname">Enter surname: </label>
+    <input type="text" th:field="*{surname}" id="surname"/>
     <br><br>
 
-    <label for="age">Enter age:   </label>
-    <input type="text" th:field="*{age}" id="age" />
+    <label for="age">Enter age: </label>
+    <input type="text" th:field="*{age}" id="age"/>
     <br><br>
 
-    <label for="email">Enter email:   </label>
-    <input type="text" th:field="*{email}" id="email" />
+    <label for="email">Enter email: </label>
+    <input type="text" th:field="*{email}" id="email"/>
     <br><br>
-
 
 
     <input type="submit" value="Add User"/>
