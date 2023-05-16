@@ -6,25 +6,28 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import web.Model.User;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
 @AllArgsConstructor
 class UserDaoImpl implements UserDao {
-    private final SessionFactory sessionFactory;
+    @PersistenceContext
+    private EntityManager entityManager;
 
 
     @Override
     @Transactional
     public void saveUser(User user) {
-        sessionFactory.getCurrentSession().saveOrUpdate(user);
+        entityManager.getCurrentSession().saveOrUpdate(user);
     }
 
     @Override
     @Transactional
     public void delete(int id) {
-        TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery("delete from User where id =:userID");
+        TypedQuery<User> query = entityManager.getCurrentSession().createQuery("delete from User where id =:userID");
         query.setParameter("userID", id);
         query.executeUpdate();
 
@@ -33,13 +36,13 @@ class UserDaoImpl implements UserDao {
     @Override
     @Transactional
     public User getById(int id) {
-        return sessionFactory.getCurrentSession().get(User.class, id);
+        return entityManager.getCurrentSession().get(User.class, id);
     }
 
     @Override
     @Transactional(readOnly = true)
     public List<User> getAllUsers() {
-        TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery("from User");
+        TypedQuery<User> query = entityManager.getCurrentSession().createQuery("from User");
         return query.getResultList();
     }
 }
